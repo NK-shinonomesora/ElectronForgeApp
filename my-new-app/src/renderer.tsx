@@ -29,8 +29,8 @@
 import './index.css';
 import React from 'react';
 import { createRoot } from "react-dom/client"
-import Menu from './components/Menu';
+import DataBase from './components/DataBase';
 
 const root = createRoot(document.getElementById('root'));
 
-root.render(<Menu />);
+root.render(<DataBase />);
