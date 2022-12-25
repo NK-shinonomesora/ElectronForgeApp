@@ -29,8 +29,13 @@
 import './index.css';
 import React from 'react';
 import { createRoot } from "react-dom/client"
-import DataBase from './components/DataBase';
+import App from './components/App';
+import { HashRouter as Router } from "react-router-dom"
 
 const root = createRoot(document.getElementById('root'));
 
-root.render(<DataBase />);
+root.render(
+  <Router>
+    <App />
+  </Router>
+);

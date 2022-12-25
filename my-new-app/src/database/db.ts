@@ -28,8 +28,12 @@ export const TableCreate = () => {
   )`);
 }
 
-export const InsertTodo = () => {
-  dbRun(`INSERT INTO todo (content, due_date) VALUES ("AWS Reply", "2022/12/22")`);
+export const InsertTodo = async (event, todo: string, date: string) => {
+  try {
+    await dbRun(`INSERT INTO todo (content, due_date) VALUES ("${todo}", "${date}")`);
+  } catch(err) {
+    throw new Error("Error ocurres in the InsertTodo");
+  }
 }
 
 export const SelectTodos = () => {

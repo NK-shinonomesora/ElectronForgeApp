@@ -1,0 +1,16 @@
+.header {
+  border-bottom: solid 1px black;
+}
+
+.headerBox {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.headerContent {
+  position: relative;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
