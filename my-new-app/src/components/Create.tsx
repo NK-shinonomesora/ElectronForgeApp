@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
+import Header from "./Header";
 import Modal from 'react-modal';
 import '../styles/Create.css'
 
@@ -30,7 +31,7 @@ const CreateProp = (): CreateProp => {
 
   const CreateTodo = async () => {
     try {
-      await sql.insertTodo(todo, dueDate);
+      await window.sql.insertTodo(todo, dueDate);
       openModal();
     } catch(err) {
       console.log(err);
@@ -65,6 +66,7 @@ const Create = () => {
   return (
     <CreateContext.Provider value={data}>
       <div id="root">
+        <Header />
         <Register />
         <ModalWindow />
       </div>

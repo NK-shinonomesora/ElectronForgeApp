@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import Header from "./Header";
 
 interface Todo {
   id: number
@@ -8,38 +9,48 @@ interface Todo {
 
 export const DataBaseProp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-
-  const TableCreate = () => {
-    sql.tableCreate();
-  }
-  
-  const InsertTodo = () => {
-    sql.insertTodo();
-  }
+  const [dirname, setDirname] = useState<string>("");
+  const [nodeEnv, setNodeEnv] = useState<string>("");
   
   const SelectTodos = async () => {
-    setTodos(await sql.selectTodos());
+    setTodos(await window.sql.selectTodos());
+  }
+
+  const Check_dirname = async () => {
+    const path = await window.sql.check_dirname();
+    setDirname(path);
+  }
+
+  const CheckNodeEnv = async () => {
+    const env = await window.sql.checkNodeEnv();
+    setNodeEnv(env);
   }
 
   return {
     todos: todos,
     setTodos: setTodos,
-    TableCreate: TableCreate,
-    InsertTodo: InsertTodo,
     SelectTodos: SelectTodos,
+    Check_dirname: Check_dirname,
+    dirname: dirname,
+    nodeEnv: nodeEnv,
+    CheckNodeEnv: CheckNodeEnv,
   }
 }
 
 
 
 const DataBase = () => {
-  const { todos, SelectTodos } = DataBaseProp();
+  const { todos, SelectTodos, Check_dirname, dirname, CheckNodeEnv, nodeEnv } = DataBaseProp();
 
   return (
     <>
-    {/* <h1 onClick={() => TableCreate()}>Table Create</h1>
-    <h1 onClick={() => InsertTodo()}>Insert Todo</h1> */}
+    <Header />
+    {/* <h1 onClick={() => InsertTodo()}>Insert Todo</h1> */}
+    <h1 onClick={() => Check_dirname()}>__dirname check</h1>
+    <h1 onClick={() => CheckNodeEnv()}>NodeEnv</h1>
     <h1 onClick={() => SelectTodos()}>Select Todos</h1>
+    <p>{dirname}</p>
+    <p>{nodeEnv}</p>
     <ul>
     {
       todos.map((todo, i) => (

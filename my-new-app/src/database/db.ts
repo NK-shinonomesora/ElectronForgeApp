@@ -1,10 +1,9 @@
-import { sqlite3 } from "sqlite3";
+import * as sqlite3 from "sqlite3" 
+import { join } from "path";
+import { promisify } from "util"
+import { readFile } from 'node:fs/promises';
 
-const { join } = require('path');
-const { promisify } = require('util');
-
-const sqlite3: sqlite3 = process.env.NODE_ENV === 'production' ? require('sqlite3') : require('sqlite3').verbose();
-const db = new sqlite3.Database('./todo');
+const db = new sqlite3.Database(join(__dirname, '../../todo'));
 
 const dbGet = promisify(db.get.bind(db));
 const dbAll = promisify(db.all.bind(db));
@@ -12,7 +11,7 @@ const dbRun = function(arg: string) {
   return new Promise<any>((resolve, reject) => {
     db.run.apply(db, [
       arg,
-      function(this: sqlite3["Database"], err: Error) {
+      function(this: sqlite3.Database, err: Error) {
         err ? reject(err) : resolve(this)
       }
     ]
@@ -28,7 +27,7 @@ export const TableCreate = () => {
   )`);
 }
 
-export const InsertTodo = async (event, todo: string, date: string) => {
+export const InsertTodo = async (event: Event, todo: string, date: string) => {
   try {
     await dbRun(`INSERT INTO todo (content, due_date) VALUES ("${todo}", "${date}")`);
   } catch(err) {
@@ -38,4 +37,21 @@ export const InsertTodo = async (event, todo: string, date: string) => {
 
 export const SelectTodos = () => {
   return dbAll(`SELECT * FROM todo`);
+}
+
+export const Check_dirname = () => {
+  return join(__dirname, '../../');
+}
+
+export const CheckNodeEnv = () => {
+  return process.env.NODE_ENV;
+}
+
+export const IsFileSizeGreaterThanZero = async (filePath: string) => {
+  try {
+    const file = await readFile(join(__dirname, filePath));
+    return file.byteLength > 0 ? true : false;
+  } catch(err) {
+    console.log(err);
+  }
 }
