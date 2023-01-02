@@ -7,7 +7,7 @@ const TableCreateIfNoTable = async () => {
   }
 }
 
-const Start = () => {
+const Start: React.FC = () => {
   return (
     <>
     <Link to="/homepage"><p onClick={() => TableCreateIfNoTable()}>Start todo app!</p></Link>

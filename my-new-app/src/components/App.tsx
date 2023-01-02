@@ -5,7 +5,7 @@ import HomePage from "./HomePage";
 import DataBase from "./DataBase";
 import Create from "./Create";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <>
     <Routes>

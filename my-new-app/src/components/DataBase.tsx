@@ -39,7 +39,7 @@ export const DataBaseProp = () => {
 
 
 
-const DataBase = () => {
+const DataBase: React.FC = () => {
   const { todos, SelectTodos, Check_dirname, dirname, CheckNodeEnv, nodeEnv } = DataBaseProp();
 
   return (

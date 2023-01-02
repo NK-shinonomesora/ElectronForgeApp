@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
     <Header />
