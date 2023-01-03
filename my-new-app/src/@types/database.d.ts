@@ -5,6 +5,7 @@ interface MySqlAPI {
   check_dirname: () => string
   checkNodeEnv: () => string
   isFileSizeGreaterThanZero: (filePath: string) => boolean
+  deleteTodo: (id: number) => void
 }
 
 interface Window {

@@ -55,3 +55,11 @@ export const IsFileSizeGreaterThanZero = async (filePath: string) => {
     console.log(err);
   }
 }
+
+export const DeleteTodo = async (event: Event, id: number) => {
+  try {
+    await dbRun(`delete from todo where id = ${id}`);
+  } catch(err) {
+    console.log(err);
+  }
+}

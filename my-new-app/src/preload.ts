@@ -7,4 +7,5 @@ contextBridge.exposeInMainWorld('sql', {
   check_dirname: () => ipcRenderer.invoke('check_dirname'),
   checkNodeEnv: () => ipcRenderer.invoke('checkNodeEnv'),
   isFileSizeGreaterThanZero: () => ipcRenderer.invoke('isFileSizeGreaterThanZero'),
+  deleteTodo: (id: number) => ipcRenderer.invoke('deleteTodo', id),
 });

@@ -4,6 +4,7 @@ import Start from "./Start";
 import HomePage from "./HomePage";
 import DataBase from "./DataBase";
 import Create from "./Create";
+import Delete from "./Delete";
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
       <Route path="/homepage" element={<HomePage />} />
       <Route path="/database" element={<DataBase />} />
       <Route path="/create" element={<Create />} />
+      <Route path="/delete" element={<Delete />} />
     </Routes>
     </>
   )

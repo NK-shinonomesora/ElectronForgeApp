@@ -1,12 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Header from "./Header";
 
-interface Todo {
-  id: number
-  content: string
-  due_date: string
-}
-
 export const DataBaseProp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [dirname, setDirname] = useState<string>("");

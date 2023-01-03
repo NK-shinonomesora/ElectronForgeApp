@@ -7,12 +7,12 @@ const Header: React.FC = () => {
     <>
     <header className={"header"}>
       <div className={"headerBox"}>
-        <Link to="/"><h2 className={"headerContent"}>HomePage</h2></Link>
+        <Link to="/homepage"><h2 className={"headerContent"}>HomePage</h2></Link>
         <Link to="/database"><h2 className={"headerContent"}>DataBase</h2></Link>
         <h2 className={"headerContent"}>Todos</h2>
         <Link to="/create"><h2 className={"headerContent"}>Create</h2></Link>
         <h2 className={"headerContent"}>Update</h2>
-        <h2 className={"headerContent"}>Delete</h2>
+        <Link to="/delete"><h2 className={"headerContent"}>Delete</h2></Link>
       </div>
     </header>
     </>
