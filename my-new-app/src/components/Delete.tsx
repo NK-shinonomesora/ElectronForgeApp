@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import TodoTable from "./TodoTable";
+import TodoTableForDelete from "./TodoTableForDelete";
 
 const Delete: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -21,7 +21,7 @@ const Delete: React.FC = () => {
     <>
     <Header />
     <h2>Select a todo to delete</h2>
-    <TodoTable todos={ todos } DeleteTodo={ DeleteTodo } />
+    <TodoTableForDelete todos={ todos } DeleteTodo={ DeleteTodo } />
     </>
   )
 }

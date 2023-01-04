@@ -5,6 +5,7 @@ import HomePage from "./HomePage";
 import DataBase from "./DataBase";
 import Create from "./Create";
 import Delete from "./Delete";
+import Todo from "./Todo";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Route path="/database" element={<DataBase />} />
       <Route path="/create" element={<Create />} />
       <Route path="/delete" element={<Delete />} />
+      <Route path="/todo" element={<Todo />} />
     </Routes>
     </>
   )

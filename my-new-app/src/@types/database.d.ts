@@ -6,6 +6,8 @@ interface MySqlAPI {
   checkNodeEnv: () => string
   isFileSizeGreaterThanZero: (filePath: string) => boolean
   deleteTodo: (id: number) => void
+  updateContent: (id: number, newContent: string, column: string) => void
+  updateDueDate: (id: number, newDueDate: string, column: string) => void
 }
 
 interface Window {

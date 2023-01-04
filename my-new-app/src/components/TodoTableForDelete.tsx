@@ -1,12 +1,12 @@
 import React from "react";
 import "../styles/Delete.css"
 
-interface TodoTableProp {
+interface TodoTableForDeleteProp {
   todos: Todo[]
   DeleteTodo: (id: number) => void
 }
 
-const TodoTable: React.FC<TodoTableProp> = ({ todos, DeleteTodo }) => {
+const TodoTableForDelete: React.FC<TodoTableForDeleteProp> = ({ todos, DeleteTodo }) => {
   return (
     <>
     <table>
@@ -34,4 +34,4 @@ const TodoTable: React.FC<TodoTableProp> = ({ todos, DeleteTodo }) => {
   )
 }
 
-export default TodoTable;
+export default TodoTableForDelete;

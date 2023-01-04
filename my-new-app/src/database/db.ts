@@ -63,3 +63,11 @@ export const DeleteTodo = async (event: Event, id: number) => {
     console.log(err);
   }
 }
+
+export const UpdateTodo = async (event: Event, id: number, newData: string, column: string) => {
+  try {
+    await dbRun(`UPDATE todo SET "${column}" = "${newData}" WHERE id = ${id}`);
+  } catch(err) {
+    console.log(err);
+  }
+}
