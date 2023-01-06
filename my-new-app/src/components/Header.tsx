@@ -12,7 +12,6 @@ const Header: React.FC = () => {
         <Link to="/database"><h2 className={"headerContent"}>DataBase</h2></Link>
         <Link to="/create"><h2 className={"headerContent"}>Create</h2></Link>
         <Link to="/delete"><h2 className={"headerContent"}>Delete</h2></Link>
-        <Link to="/dummy"><h2 className={"headerContent"}>Dummy</h2></Link>
       </div>
     </header>
     </>

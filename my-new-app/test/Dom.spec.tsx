@@ -5,6 +5,7 @@
 import React from 'react';
 import { render, renderHook, act, fireEvent } from '@testing-library/react';
 import Register from '../src/components/Register';
+import TodoTableForDelete from '../src/components/TodoTableForDelete';
 import { ContentHook, DueDateHook } from '../src/hooks/CustomHooks';
 import '@testing-library/jest-dom'
 
@@ -45,6 +46,7 @@ describe("DOM Operation", () => {
     const SetContent = jest.fn();
     const SetDueDate = jest.fn();
     const CreateTodo = jest.fn();
+
     test("When clicking a button in Register Component, CreateTodo function is called.", async () => {
       const { getByText } = render(
         <Register SetContent={ SetContent } SetDueDate={ SetDueDate } CreateTodo={ CreateTodo } />
@@ -75,6 +77,18 @@ describe("DOM Operation", () => {
       expect(result.current.dueDate).toBe("");
       await act(() => result.current.SetDueDate("hoge"));
       expect(result.current.dueDate).toBe("hoge");
+    });
+  });
+
+  describe("For Delete Component", () => {
+    const todos = [{ id: 1, content: "myTask", due_date: "2023-01-31" }];
+    const DeleteTodo = jest.fn();
+    test("When clicking a todo in TodoTableForDelete Component, DeleteTodo function is called.", () => {
+      const { getByTestId } = render(
+        <TodoTableForDelete todos={todos} DeleteTodo={DeleteTodo} />
+      );
+      fireEvent.click(getByTestId("DeleteTodo"));
+      expect(DeleteTodo).toHaveBeenCalledTimes(1);
     });
   });
 });

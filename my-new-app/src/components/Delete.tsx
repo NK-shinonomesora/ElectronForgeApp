@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import TodoTableForDelete from "./TodoTableForDelete";
+import { DeleteHook } from "../hooks/CustomHooks";
 
 const Delete: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const { todos, setTodos } = DeleteHook();
 
   const DeleteTodo = (id: number) => {
     if(!confirm("Do you wish to delete it?")) return;

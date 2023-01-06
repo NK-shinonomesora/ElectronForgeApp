@@ -18,3 +18,8 @@ interface ModalWindowHook {
   openModal: () => void
   closeModal: () => void
 }
+
+interface DeleteHook {
+  todos: Todo[]
+  setTodos: (todos: Todo[]) => void
+}

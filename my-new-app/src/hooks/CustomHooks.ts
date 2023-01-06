@@ -43,3 +43,9 @@ export const ModalWindowHook = (): ModalWindowHook => {
 
   return { modalIsOpen, openModal, closeModal }
 }
+
+export const DeleteHook = (): DeleteHook => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  return { todos, setTodos }
+}

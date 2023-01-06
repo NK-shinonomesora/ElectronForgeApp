@@ -22,7 +22,7 @@ const TodoTableForDelete: React.FC<TodoTableForDeleteProp> = ({ todos, DeleteTod
         </tr>
       {
         todos.map((todo, i) => (
-          <tr onClick={() => DeleteTodo(todo.id)} key={i}>
+          <tr data-testid="DeleteTodo" onClick={() => DeleteTodo(todo.id)} key={i}>
             <td>{todo.content}</td>
             <td>{todo.due_date}</td>
           </tr>

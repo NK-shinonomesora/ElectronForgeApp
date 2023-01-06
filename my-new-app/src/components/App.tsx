@@ -18,7 +18,6 @@ const App: React.FC = () => {
       <Route path="/create" element={<Create />} />
       <Route path="/delete" element={<Delete />} />
       <Route path="/todo" element={<Todo />} />
-      <Route path="/dummy" element={<Dummy />} />
     </Routes>
     </>
   )
