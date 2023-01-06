@@ -6,7 +6,8 @@ import React from 'react';
 import { render, renderHook, act, fireEvent } from '@testing-library/react';
 import Register from '../src/components/Register';
 import TodoTableForDelete from '../src/components/TodoTableForDelete';
-import { ContentHook, DueDateHook } from '../src/hooks/CustomHooks';
+import TodoTableForUpdate from '../src/components/TodoTableForUpdate';
+import { ContentHook, DueDateHook, TodoHook } from '../src/hooks/CustomHooks';
 import '@testing-library/jest-dom'
 
 // test("Hooks test", async () => {
@@ -89,6 +90,48 @@ describe("DOM Operation", () => {
       );
       fireEvent.click(getByTestId("DeleteTodo"));
       expect(DeleteTodo).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("For Todo Component", () => {
+    const todos = [{ id: 1, content: "myTask", due_date: "2023-01-31" }];
+    const SetContent = jest.fn();
+    const SetDueDate = jest.fn();
+    const UpdateContent = jest.fn();
+    const UpdateDueDate = jest.fn();
+
+    test("When occurring each event set to DOM, specified function is called.", () => {
+      const { getByTestId } = render(
+        <TodoTableForUpdate todos={todos} SetContent={SetContent} SetDueDate={SetDueDate} UpdateContent={UpdateContent} UpdateDueDate={UpdateDueDate} />
+      );
+      const inputForContent = getByTestId("UpdateContent");
+      fireEvent.change(inputForContent, { target: { value: 'bar' } });
+      expect(SetContent).toHaveBeenCalledTimes(1);
+      fireEvent.blur(inputForContent);
+      expect(UpdateContent).toHaveBeenCalledTimes(1);
+      const inputForDueDate = getByTestId("UpdateDueDate");
+      fireEvent.change(inputForDueDate, { target: { value: 'foo' } });
+      expect(SetDueDate).toHaveBeenCalledTimes(1);
+      fireEvent.blur(inputForDueDate);
+      expect(UpdateDueDate).toHaveBeenCalledTimes(1);
+    });
+
+    test("SetContent function correctly works.", async () => {
+      const { result } = renderHook(() => TodoHook());
+      expect(result.current.content).toBe("");
+      expect(result.current.isChangedContent).toBe(false);
+      await act(() => result.current.SetContent("foo"));
+      expect(result.current.content).toBe("foo");
+      expect(result.current.isChangedContent).toBe(true);
+    });
+
+    test("SetDueDate function is correctly works.", async () => {
+      const { result } = renderHook(() => TodoHook());
+      expect(result.current.dueDate).toBe("");
+      expect(result.current.isChangedDueDate).toBe(false);
+      await act(() => result.current.SetDueDate("bar"));
+      expect(result.current.dueDate).toBe("bar");
+      expect(result.current.isChangedDueDate).toBe(true);
     });
   });
 });

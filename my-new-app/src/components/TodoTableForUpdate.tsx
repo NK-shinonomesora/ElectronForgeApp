@@ -28,6 +28,7 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
           <tr key={i}>
             <td>
               <input
+                data-testid="UpdateContent"
                 type="text" 
                 defaultValue={todo.content}
                 onChange={(e) => SetContent(e.target.value)}
@@ -37,6 +38,7 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
             </td>
             <td>
               <input
+                data-testid="UpdateDueDate"
                 type="text" 
                 defaultValue={todo.due_date}
                 onChange={(e) => SetDueDate(e.target.value)}
