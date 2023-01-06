@@ -1,44 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import Register from "./Register";
 import Header from "./Header";
 import ModalWindow from "./ModalWindow";
+import { ContentHook, DueDateHook, ModalWindowHook } from "../hooks/CustomHooks";
 import '../styles/Create.css'
 
 const Create: React.FC = () => {
-  const [todo, setTodo] = useState<string>("");
-  const [dueDate, setDueDate] = useState<string>("");
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const { content, SetContent } = ContentHook();
+  const { dueDate, SetDueDate } = DueDateHook();
+  const { modalIsOpen, openModal, closeModal } = ModalWindowHook();
 
   const CreateTodo = async () => {
     try {
-      await window.sql.insertTodo(todo, dueDate);
+      await window.sql.insertTodo(content, dueDate);
       openModal();
     } catch(err) {
       console.log(err);
     }
-  }
-  
-  const SetTodo = (value: string) => {
-    setTodo(value);
-  }
-  
-  const SetDueDate = (date: string) => {
-    setDueDate(date);
-  }
-  
-  function openModal() {
-    setIsOpen(true);
-  }
-  
-  function closeModal() {
-    setIsOpen(false);
   }
 
   return (
     <div id="root">
       <Header />
       <Register
-        SetTodo={ SetTodo }
+        SetContent={ SetContent }
         SetDueDate={ SetDueDate }
         CreateTodo={ CreateTodo }
       />
