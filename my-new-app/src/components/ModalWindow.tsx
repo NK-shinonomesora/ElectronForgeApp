@@ -17,7 +17,7 @@ const ModalWindow: React.FC<ModalWindowProp> = ({ modalIsOpen, closeModal }) => 
         contentLabel="Example Modal"
       >
         <button onClick={() => closeModal()}>close</button>
-        <div>I am a modal</div>
+        <div>The todo is successfully created.</div>
       </Modal>
     </div>
   )

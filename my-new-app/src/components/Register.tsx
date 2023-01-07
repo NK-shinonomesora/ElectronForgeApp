@@ -11,9 +11,19 @@ const Register: React.FC<RegisterProp> = ({ SetContent, SetDueDate, CreateTodo }
     <>
     <h2>In this page to create a todo</h2>
     <p>Enter a todo</p>
-    <textarea data-testid="SetContent" onChange={(e) => SetContent(e.target.value)} className={"textareaForTodo"}></textarea>
+    <textarea
+      id="textareaForContent"
+      data-testid="SetContent"
+      onChange={(e) => SetContent(e.target.value)}
+      className={"textareaForTodo"}>
+    </textarea>
     <p>Enter due date</p>
-    <input data-testid="SetDueDate" onChange={(e) => SetDueDate(e.target.value)} type="text" className={"inputForDueDate"}></input>
+    <input
+      id="inputForDueDate"
+      data-testid="SetDueDate"
+      onChange={(e) => SetDueDate(e.target.value)}
+      type="text" className={"inputForDueDate"}>
+    </input>
     <p>Push button</p>
     <button onClick={() => CreateTodo()}>To create</button>
     </>
