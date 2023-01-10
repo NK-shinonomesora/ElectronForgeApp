@@ -22,7 +22,8 @@ const Register: React.FC<RegisterProp> = ({ SetContent, SetDueDate, CreateTodo }
       id="inputForDueDate"
       data-testid="SetDueDate"
       onChange={(e) => SetDueDate(e.target.value)}
-      type="text" className={"inputForDueDate"}>
+      type="date"
+      className={"inputForDueDate"}>
     </input>
     <p>Push button</p>
     <button onClick={() => CreateTodo()}>To create</button>

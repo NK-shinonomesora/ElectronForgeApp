@@ -72,7 +72,7 @@ describe("DOM Operation", () => {
       const { getByTestId } = render(
         <Register SetContent={ SetContent } SetDueDate={ SetDueDate } CreateTodo={ CreateTodo } />
       );
-      fireEvent.change(getByTestId("SetDueDate"), { target: { value: 'bar' } });
+      fireEvent.change(getByTestId("SetDueDate"), { target: { value: '2023-01-07' } });
       expect(SetDueDate).toHaveBeenCalledTimes(1);
       const { result } = renderHook(() => DueDateHook());
       expect(result.current.dueDate).toBe("");
