@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FormatCheck from "../formatCheck";
 
 export const MyCustomHook = (): MyCustomHook => {
   const [count, setCount] = useState<number>(0);
@@ -83,6 +84,7 @@ export const TodoHook = (): TodoHook => {
 
   const UpdateDueDate = async (id: number) => {
     if(!isChangedDueDate) return;
+    if(!FormatCheck(dueDate)) return;
     SetIsChangedDueDate(false);
     await window.sql.updateDueDate(id, dueDate, "due_date");
   }

@@ -14,8 +14,8 @@ const GetCurrentDateNum = (): number => {
 const FilterExpiredTodos = (todos: Todo[]): Todo[] => {
   const currentDate = GetCurrentDateNum();
   const expiredTodos = todos.filter((todo: Todo, i: number) => {
-    const dueDate = todo.due_date;
-    return new Date(`${dueDate}T09:00:00.125Z`).getTime() < currentDate;
+    const [a, b] = todo.due_date.split(" ");
+    return new Date(`${a}T${b}:00.125Z`).getTime() < currentDate;
   });
   return expiredTodos;
 }
@@ -32,7 +32,7 @@ const Notice = async (todos: Todo[]) => {
     display.on('close', (code) => {
       console.log(`child process exited with code ${ code }`);
     });
-    await new Promise(resolve => { setTimeout(() => { resolve(0) }, 3000) })
+    await new Promise(resolve => { setTimeout(() => { resolve(0) }, 4000) })
   }
 }
 

@@ -3,6 +3,7 @@ import Register from "./Register";
 import Header from "./Header";
 import ModalWindow from "./ModalWindow";
 import { ContentHook, DueDateHook, ModalWindowHook } from "../hooks/CustomHooks";
+import FormatCheck from "../formatCheck";
 import '../styles/Create.css'
 
 const Create: React.FC = () => {
@@ -19,6 +20,7 @@ const Create: React.FC = () => {
 
   const CreateTodo = async () => {
     try {
+      if(!FormatCheck(dueDate)) return;
       await window.sql.insertTodo(content, dueDate);
       openModal();
     } catch(err) {

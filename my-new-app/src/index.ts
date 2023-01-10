@@ -67,4 +67,4 @@ alertEventEmitter.on('search', Search);
 
 setInterval(() => {
   alertEventEmitter.searchShouldDo();
-}, 30000);
+}, 20000);
