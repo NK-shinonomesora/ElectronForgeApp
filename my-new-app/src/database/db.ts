@@ -19,12 +19,16 @@ const dbRun = function(arg: string) {
   })
 }
 
-export const TableCreate = () => {
-  dbRun(`CREATE TABLE todo (
+export const TableCreate = async () => {
+  await dbRun(`CREATE TABLE todo (
     id INTEGER PRIMARY KEY NOT NULL,
     content TEXT NOT NULL,
     due_date TEXT NOT NULL
   )`);
+  await dbRun(`CREATE TABLE notification (
+    interval INTEGER
+  )`);
+  await dbRun(`INSERT INTO notification (interval) VALUES (1)`);
 }
 
 export const InsertTodo = async (event: Event, todo: string, date: string) => {
@@ -67,6 +71,18 @@ export const DeleteTodo = async (event: Event, id: number) => {
 export const UpdateTodo = async (event: Event, id: number, newData: string, column: string) => {
   try {
     await dbRun(`UPDATE todo SET "${column}" = "${newData}" WHERE id = ${id}`);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+export const SelectInterval = async () => {
+ return await dbGet('SELECT interval FROM notification');
+}
+
+export const UpdateNotification = async (event: Event, interval: number) => {
+  try {
+    await dbRun(`UPDATE notification SET interval = ${interval}`);
   } catch(err) {
     console.log(err);
   }

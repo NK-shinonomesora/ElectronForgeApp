@@ -1,5 +1,5 @@
 import { EventEmitter } from 'node:events';
-import { SelectTodos } from './database/db';
+import { SelectInterval, SelectTodos, IsFileSizeGreaterThanZero, TableCreate  } from './database/db';
 import { formatToTimeZone } from 'date-fns-timezone';
 import { spawn } from 'node:child_process';
 
@@ -32,14 +32,21 @@ const Notice = async (todos: Todo[]) => {
     display.on('close', (code) => {
       console.log(`child process exited with code ${ code }`);
     });
-    await new Promise(resolve => { setTimeout(() => { resolve(0) }, 4000) })
+    await new Promise(resolve => { setTimeout(() => { resolve(0) }, 4000) });
   }
 }
 
 export async function Search() {
-  const todos = await SelectTodos();
-  const expiredTodos = FilterExpiredTodos(todos);
-  Notice(expiredTodos);
+  if(!(await IsFileSizeGreaterThanZero("../../todo"))) {
+    await TableCreate();
+  }
+  const res = await SelectInterval();
+  const interval = res.interval;
+  setInterval(async () => {
+    const todos = await SelectTodos();
+    const expiredTodos = FilterExpiredTodos(todos);
+    await Notice(expiredTodos);
+}, interval * 60 * 1000);
 }
 
 // export function EndLisner() {

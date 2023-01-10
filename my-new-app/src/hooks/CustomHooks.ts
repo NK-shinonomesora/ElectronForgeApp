@@ -104,3 +104,18 @@ export const TodoHook = (): TodoHook => {
     UpdateDueDate: UpdateDueDate,
   }
 }
+
+export const NotificationIntervalHook = (): NotificationIntervalHook => {
+  const [interval, setInterval] = useState<number>(1);
+
+  const SetInterval = (newInterval: string) => {
+    const castedNumber = Number(newInterval);
+    setInterval(castedNumber);
+  }
+
+  const UpdateNotification = async () => {
+    await window.sql.updateNotification(interval);
+  }
+
+  return { interval, SetInterval, UpdateNotification }
+}

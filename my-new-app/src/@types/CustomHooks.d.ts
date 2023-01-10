@@ -38,3 +38,9 @@ interface TodoHook {
   UpdateContent: (id: number) => void
   UpdateDueDate: (id: number) => void
 }
+
+interface NotificationIntervalHook {
+  interval: number
+  SetInterval: (newInterval: string) => void
+  UpdateNotification: () => void
+}

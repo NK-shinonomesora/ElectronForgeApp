@@ -8,6 +8,8 @@ interface MySqlAPI {
   deleteTodo: (id: number) => void
   updateContent: (id: number, newContent: string, column: string) => void
   updateDueDate: (id: number, newDueDate: string, column: string) => void
+  selectNotification: () => MyNotification
+  updateNotification: (interval: number) => void
 }
 
 interface Window {
@@ -20,4 +22,8 @@ interface Todo {
   id: number
   content: string
   due_date: string
+}
+
+interface MyNotification {
+  interval: number
 }

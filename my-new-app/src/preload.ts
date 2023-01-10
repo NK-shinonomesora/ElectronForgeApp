@@ -10,4 +10,6 @@ contextBridge.exposeInMainWorld('sql', {
   deleteTodo: (id: number) => ipcRenderer.invoke('deleteTodo', id),
   updateContent: (id: number, newContent: string, column: string) => ipcRenderer.invoke('updateContent', id, newContent, column),
   updateDueDate: (id: number, newDueDate: string, column: string) => ipcRenderer.invoke('updateDueDate', id, newDueDate, column),
+  selectNotification: () => ipcRenderer.invoke('selectNotification'),
+  updateNotification: (interval: number) => ipcRenderer.invoke('updateNotification', interval),
 });
