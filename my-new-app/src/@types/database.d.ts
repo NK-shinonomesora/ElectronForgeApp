@@ -10,6 +10,7 @@ interface MySqlAPI {
   updateDueDate: (id: number, newDueDate: string, column: string) => void
   selectNotification: () => MyNotification
   updateNotification: (interval: number) => void
+  updateDoNoticeInTodo: (id: number) => void
 }
 
 interface Window {
@@ -22,6 +23,7 @@ interface Todo {
   id: number
   content: string
   due_date: string
+  do_notice: number
 }
 
 interface MyNotification {

@@ -11,11 +11,11 @@ const GetCurrentDateNum = (): number => {
   return new Date(`${a}T${b}.125Z`).getTime();
 }
 
-const FilterExpiredTodos = (todos: Todo[]): Todo[] => {
+const FilterExpiredTodos = (todos: Todo[], interval: number): Todo[] => {
   const currentDate = GetCurrentDateNum();
   const expiredTodos = todos.filter((todo: Todo, i: number) => {
     const [a, b] = todo.due_date.split(" ");
-    return new Date(`${a}T${b}:00.125Z`).getTime() < currentDate;
+    return (todo.do_notice === 0) && (new Date(`${a}T${b}:00.125Z`).getTime() < currentDate + interval * 60 * 1000);
   });
   return expiredTodos;
 }
@@ -32,7 +32,7 @@ const Notice = async (todos: Todo[]) => {
     display.on('close', (code) => {
       console.log(`child process exited with code ${ code }`);
     });
-    await new Promise(resolve => { setTimeout(() => { resolve(0) }, 4000) });
+    await new Promise(resolve => { setTimeout(() => { resolve(0) }, 5000) });
   }
 }
 
@@ -40,13 +40,12 @@ export async function Search() {
   if(!(await IsFileSizeGreaterThanZero("../../todo"))) {
     await TableCreate();
   }
-  const res = await SelectInterval();
-  const interval = res.interval;
   setInterval(async () => {
+    const res = await SelectInterval();
     const todos = await SelectTodos();
-    const expiredTodos = FilterExpiredTodos(todos);
+    const expiredTodos = FilterExpiredTodos(todos, res.interval);
     await Notice(expiredTodos);
-}, interval * 60 * 1000);
+}, 60000);
 }
 
 // export function EndLisner() {

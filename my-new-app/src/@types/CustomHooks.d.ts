@@ -38,6 +38,7 @@ interface TodoHook {
   UpdateContent: (id: number) => void
   UpdateDueDate: (id: number) => void
   SortTodosByDueDate: (todos: Todo[]) => void
+  UpdateDoNoticeInTodo: (id: number) => void
 }
 
 interface NotificationIntervalHook {

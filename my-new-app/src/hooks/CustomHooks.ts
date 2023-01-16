@@ -97,6 +97,10 @@ export const TodoHook = (): TodoHook => {
     });
   }
 
+  const UpdateDoNoticeInTodo = async (id: number) => {
+    await window.sql.updateDoNoticeInTodo(id);
+  }
+
   return {
     todos: todos,
     setTodos: setTodos,
@@ -111,6 +115,7 @@ export const TodoHook = (): TodoHook => {
     UpdateContent: UpdateContent,
     UpdateDueDate: UpdateDueDate,
     SortTodosByDueDate: SortTodosByDueDate,
+    UpdateDoNoticeInTodo: UpdateDoNoticeInTodo,
   }
 }
 

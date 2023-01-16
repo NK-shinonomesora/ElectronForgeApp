@@ -23,7 +23,8 @@ export const TableCreate = async () => {
   await dbRun(`CREATE TABLE todo (
     id INTEGER PRIMARY KEY NOT NULL,
     content TEXT NOT NULL,
-    due_date TEXT NOT NULL
+    due_date TEXT NOT NULL,
+    do_notice INTEGER NOT NULL
   )`);
   await dbRun(`CREATE TABLE notification (
     interval INTEGER
@@ -33,7 +34,7 @@ export const TableCreate = async () => {
 
 export const InsertTodo = async (event: Event, todo: string, date: string) => {
   try {
-    await dbRun(`INSERT INTO todo (content, due_date) VALUES ("${todo}", "${date}")`);
+    await dbRun(`INSERT INTO todo (content, due_date, do_notice) VALUES ("${todo}", "${date}", 0)`);
   } catch(err) {
     throw new Error("Error ocurres in the InsertTodo");
   }
@@ -71,6 +72,14 @@ export const DeleteTodo = async (event: Event, id: number) => {
 export const UpdateTodo = async (event: Event, id: number, newData: string, column: string) => {
   try {
     await dbRun(`UPDATE todo SET "${column}" = "${newData}" WHERE id = ${id}`);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+export const UpdateDoNoticeInTodo = async (event: Event, id: number) => {
+  try {
+    await dbRun(`UPDATE todo SET do_notice = (do_notice + 1) % 2 WHERE id = ${id}`);
   } catch(err) {
     console.log(err);
   }

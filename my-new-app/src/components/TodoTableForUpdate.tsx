@@ -7,21 +7,23 @@ interface TodoTableForUpdateProp {
   SetDueDate: (date: string) => void
   UpdateContent: (id: number) => void
   UpdateDueDate: (id: number) => void
+  UpdateDoNoticeInTodo: (id: number) => void
 }
 
-const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetContent, SetDueDate, UpdateContent, UpdateDueDate }) => {
+const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetContent, SetDueDate, UpdateContent, UpdateDueDate, UpdateDoNoticeInTodo }) => {
   return (
     <>
     <table>
       <thead>
         <tr>
-          <th colSpan={2}>The all todos</th>
+          <th colSpan={3}>The all todos</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Contents</td>
           <td>Due_Date</td>
+          <td>Notification</td>
         </tr>
       {
         todos.map((todo, i) => (
@@ -45,6 +47,13 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
                 onBlur={() => UpdateDueDate(todo.id)}
               >
               </input>
+            </td>
+            <td>
+              <button onClick={() => UpdateDoNoticeInTodo(todo.id)}>
+              {
+                todo.do_notice === 0 ? "ON"  : "OFF"
+              }
+              </button>
             </td>
           </tr>
         ))

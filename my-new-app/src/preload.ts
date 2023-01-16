@@ -12,4 +12,5 @@ contextBridge.exposeInMainWorld('sql', {
   updateDueDate: (id: number, newDueDate: string, column: string) => ipcRenderer.invoke('updateDueDate', id, newDueDate, column),
   selectNotification: () => ipcRenderer.invoke('selectNotification'),
   updateNotification: (interval: number) => ipcRenderer.invoke('updateNotification', interval),
+  updateDoNoticeInTodo: (id: number) => ipcRenderer.invoke('updateDoNoticeInTodo', id),
 });
