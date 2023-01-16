@@ -4,11 +4,12 @@ import TodoTableForUpdate from "./TodoTableForUpdate";
 import { TodoHook } from "../hooks/CustomHooks";
 
 const Todo: React.FC = () => {
-  const { todos, setTodos, SetContent, SetDueDate, UpdateContent, UpdateDueDate } = TodoHook();
+  const { todos, setTodos, SetContent, SetDueDate, UpdateContent, UpdateDueDate, SortTodosByDueDate } = TodoHook();
 
   useEffect(() => {
     (async () => {
       const res = await window.sql.selectTodos();
+      SortTodosByDueDate(res);
       setTodos(res);
     })();
   }, [todos]);

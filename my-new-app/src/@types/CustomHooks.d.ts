@@ -37,6 +37,7 @@ interface TodoHook {
   SetIsChangedDueDate: (flag: boolean) => void
   UpdateContent: (id: number) => void
   UpdateDueDate: (id: number) => void
+  SortTodosByDueDate: (todos: Todo[]) => void
 }
 
 interface NotificationIntervalHook {

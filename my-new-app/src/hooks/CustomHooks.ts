@@ -89,6 +89,14 @@ export const TodoHook = (): TodoHook => {
     await window.sql.updateDueDate(id, dueDate, "due_date");
   }
 
+  const SortTodosByDueDate = (todos: Todo[]) => {
+    todos.sort((prev, next) => {
+      const [a, b] = prev.due_date.split(" ");
+      const [c, d] = next.due_date.split(" ");
+      return new Date(`${a}T${b}:00.125Z`).getTime() - new Date(`${c}T${d}:00.125Z`).getTime();
+    });
+  }
+
   return {
     todos: todos,
     setTodos: setTodos,
@@ -102,6 +110,7 @@ export const TodoHook = (): TodoHook => {
     SetIsChangedDueDate: SetIsChangedDueDate,
     UpdateContent: UpdateContent,
     UpdateDueDate: UpdateDueDate,
+    SortTodosByDueDate: SortTodosByDueDate,
   }
 }
 
