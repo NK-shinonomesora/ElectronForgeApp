@@ -107,6 +107,11 @@ export const TodoHook = (): TodoHook => {
     await window.sql.deleteTodo(id);
   }
 
+  const DeleteTodo = (id: number) => {
+    if(!confirm("Do you wish to delete it?")) return;
+    window.sql.deleteTodo(id);
+  }
+
   return {
     todos: todos,
     setTodos: setTodos,
@@ -123,6 +128,7 @@ export const TodoHook = (): TodoHook => {
     SortTodosByDueDate: SortTodosByDueDate,
     UpdateDoNoticeInTodo: UpdateDoNoticeInTodo,
     CompleteTodo: CompleteTodo,
+    DeleteTodo: DeleteTodo,
   }
 }
 

@@ -9,15 +9,16 @@ interface TodoTableForUpdateProp {
   UpdateDueDate: (id: number) => void
   UpdateDoNoticeInTodo: (id: number) => void
   CompleteTodo: (id: number) => void
+  DeleteTodo: (id: number) => void
 }
 
-const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetContent, SetDueDate, UpdateContent, UpdateDueDate, UpdateDoNoticeInTodo, CompleteTodo }) => {
+const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetContent, SetDueDate, UpdateContent, UpdateDueDate, UpdateDoNoticeInTodo, CompleteTodo, DeleteTodo }) => {
   return (
     <>
     <table>
       <thead>
         <tr>
-          <th colSpan={4}>The all todos</th>
+          <th colSpan={5}>The all todos</th>
         </tr>
       </thead>
       <tbody>
@@ -26,6 +27,7 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
           <td>Due_Date</td>
           <td>Notification</td>
           <td>Complete</td>
+          <td>Delete</td>
         </tr>
       {
         todos.map((todo, i) => (
@@ -59,6 +61,9 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
             </td>
             <td>
               <button onClick={() => CompleteTodo(todo.id)}>Complete</button>
+            </td>
+            <td>
+              <button onClick={() => DeleteTodo(todo.id)}>Delete</button>
             </td>
           </tr>
         ))

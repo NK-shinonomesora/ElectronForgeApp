@@ -4,7 +4,7 @@ import TodoTableForUpdate from "./TodoTableForUpdate";
 import { TodoHook } from "../hooks/CustomHooks";
 
 const Todo: React.FC = () => {
-  const { todos, setTodos, SetContent, SetDueDate, UpdateContent, UpdateDueDate, SortTodosByDueDate, UpdateDoNoticeInTodo, CompleteTodo } = TodoHook();
+  const { todos, setTodos, SetContent, SetDueDate, UpdateContent, UpdateDueDate, SortTodosByDueDate, UpdateDoNoticeInTodo, CompleteTodo, DeleteTodo } = TodoHook();
 
   useEffect(() => {
     (async () => {
@@ -26,6 +26,7 @@ const Todo: React.FC = () => {
       UpdateDueDate={ UpdateDueDate }
       UpdateDoNoticeInTodo={ UpdateDoNoticeInTodo }
       CompleteTodo={ CompleteTodo }
+      DeleteTodo={ DeleteTodo }
     />
     </>
   )

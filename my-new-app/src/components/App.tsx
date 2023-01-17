@@ -4,7 +4,6 @@ import Start from "./Start";
 import HomePage from "./HomePage";
 import DataBase from "./DataBase";
 import Create from "./Create";
-import Delete from "./Delete";
 import Todo from "./Todo";
 import Setting from "./Setting";
 import Complete from "./Complete";
@@ -17,7 +16,6 @@ const App: React.FC = () => {
       <Route path="/homepage" element={<HomePage />} />
       <Route path="/database" element={<DataBase />} />
       <Route path="/create" element={<Create />} />
-      <Route path="/delete" element={<Delete />} />
       <Route path="/todo" element={<Todo />} />
       <Route path="/setting" element={<Setting />} />
       <Route path="/complete" element={<Complete />} />
