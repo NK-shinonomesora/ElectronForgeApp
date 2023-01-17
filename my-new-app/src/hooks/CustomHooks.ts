@@ -107,9 +107,12 @@ export const TodoHook = (): TodoHook => {
     await window.sql.deleteTodo(id);
   }
 
-  const DeleteTodo = (id: number) => {
+  const DeleteTodo = async (id: number) => {
     if(!confirm("Do you wish to delete it?")) return;
-    window.sql.deleteTodo(id);
+    await window.sql.deleteTodo(id);
+    const res = await window.sql.selectTodos();
+    SortTodosByDueDate(res);
+    setTodos(res);
   }
 
   return {

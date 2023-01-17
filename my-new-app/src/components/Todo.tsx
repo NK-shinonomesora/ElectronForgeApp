@@ -12,7 +12,7 @@ const Todo: React.FC = () => {
       SortTodosByDueDate(res);
       setTodos(res);
     })();
-  }, [todos]);
+  }, []);
 
   return (
     <>
