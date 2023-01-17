@@ -39,10 +39,17 @@ interface TodoHook {
   UpdateDueDate: (id: number) => void
   SortTodosByDueDate: (todos: Todo[]) => void
   UpdateDoNoticeInTodo: (id: number) => void
+  CompleteTodo: (id: number) => void
 }
 
 interface NotificationIntervalHook {
   interval: number
   SetInterval: (newInterval: string) => void
   UpdateNotification: () => void
+}
+
+interface CompleteHook {
+  completes: Complete[]
+  setCompletes: (completes: Completes[]) => void
+  DeleteComplete: (id: number) => void
 }

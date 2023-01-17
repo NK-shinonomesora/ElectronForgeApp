@@ -2,6 +2,7 @@ import * as sqlite3 from "sqlite3"
 import { join } from "path";
 import { promisify } from "util"
 import { readFile } from 'node:fs/promises';
+import { GetCurrentDateString } from "../alert";
 
 const db = new sqlite3.Database(join(__dirname, '../../todo'));
 
@@ -30,6 +31,11 @@ export const TableCreate = async () => {
     interval INTEGER
   )`);
   await dbRun(`INSERT INTO notification (interval) VALUES (1)`);
+  await dbRun(`CREATE TABLE complete (
+    id INTEGER PRIMARY KEY NOT NULL,
+    content TEXT NOT NULL,
+    date TEXT NOT NULL
+  )`);
 }
 
 export const InsertTodo = async (event: Event, todo: string, date: string) => {
@@ -42,6 +48,10 @@ export const InsertTodo = async (event: Event, todo: string, date: string) => {
 
 export const SelectTodos = () => {
   return dbAll(`SELECT * FROM todo`);
+}
+
+export const SelectTodo = async (event: Event, id: number) => {
+  return await dbGet(`SELECT content FROM todo where id = ${id}`);
 }
 
 export const Check_dirname = () => {
@@ -92,6 +102,27 @@ export const SelectInterval = async () => {
 export const UpdateNotification = async (event: Event, interval: number) => {
   try {
     await dbRun(`UPDATE notification SET interval = ${interval}`);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+export const SelectCompletes = () => {
+  return dbAll(`SELECT * FROM complete`);
+}
+
+export const InsertComplete = async (event: Event, content: string) => {
+  try {
+    const date = GetCurrentDateString();
+    await dbRun(`INSERT INTO complete (content, date) VALUES ("${content}", "${date}")`);
+  } catch(err) {
+    throw new Error("Error ocurres in the InsertComplete");
+  }
+}
+
+export const DeleteComplete = async (event: Event, id: number) => {
+  try {
+    await dbRun(`delete from complete where id = ${id}`);
   } catch(err) {
     console.log(err);
   }

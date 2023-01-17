@@ -101,6 +101,12 @@ export const TodoHook = (): TodoHook => {
     await window.sql.updateDoNoticeInTodo(id);
   }
 
+  const CompleteTodo = async (id: number) => {
+    const todo = await window.sql.selectTodo(id);
+    await window.sql.insertComplete(todo.content);
+    await window.sql.deleteTodo(id);
+  }
+
   return {
     todos: todos,
     setTodos: setTodos,
@@ -116,6 +122,7 @@ export const TodoHook = (): TodoHook => {
     UpdateDueDate: UpdateDueDate,
     SortTodosByDueDate: SortTodosByDueDate,
     UpdateDoNoticeInTodo: UpdateDoNoticeInTodo,
+    CompleteTodo: CompleteTodo,
   }
 }
 
@@ -132,4 +139,14 @@ export const NotificationIntervalHook = (): NotificationIntervalHook => {
   }
 
   return { interval, SetInterval, UpdateNotification }
+}
+
+export const CompleteHook = (): CompleteHook => {
+  const [completes, setCompletes] = useState<Complete[]>([]);
+
+  const DeleteComplete = async (id: number) => {
+    await window.sql.deleteComplete(id);
+  }
+
+  return { completes, setCompletes, DeleteComplete }
 }

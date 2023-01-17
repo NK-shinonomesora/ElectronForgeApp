@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld('sql', {
   tableCreate: () => ipcRenderer.invoke('tableCreate'),
   insertTodo: (todo: string, date: string) => ipcRenderer.invoke('insertTodo', todo, date),
   selectTodos: () => ipcRenderer.invoke('selectTodos'),
+  selectTodo: (id: number) => ipcRenderer.invoke('selectTodo', id),
   check_dirname: () => ipcRenderer.invoke('check_dirname'),
   checkNodeEnv: () => ipcRenderer.invoke('checkNodeEnv'),
   isFileSizeGreaterThanZero: () => ipcRenderer.invoke('isFileSizeGreaterThanZero'),
@@ -13,4 +14,7 @@ contextBridge.exposeInMainWorld('sql', {
   selectNotification: () => ipcRenderer.invoke('selectNotification'),
   updateNotification: (interval: number) => ipcRenderer.invoke('updateNotification', interval),
   updateDoNoticeInTodo: (id: number) => ipcRenderer.invoke('updateDoNoticeInTodo', id),
+  insertComplete: (content: string) => ipcRenderer.invoke('insertComplete', content),
+  selectCompletes: () => ipcRenderer.invoke('selectCompletes'),
+  deleteComplete: (id: number) => ipcRenderer.invoke('deleteComplete', id),
 });

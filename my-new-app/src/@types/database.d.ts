@@ -2,6 +2,7 @@ interface MySqlAPI {
   tableCreate: () => void
   insertTodo: (todo: string, date: string) => void
   selectTodos: () => Todo[]
+  selectTodo: (id: number) => Todo
   check_dirname: () => string
   checkNodeEnv: () => string
   isFileSizeGreaterThanZero: (filePath: string) => boolean
@@ -11,6 +12,9 @@ interface MySqlAPI {
   selectNotification: () => MyNotification
   updateNotification: (interval: number) => void
   updateDoNoticeInTodo: (id: number) => void
+  insertComplete: (content: string) => void
+  selectCompletes: () => Complete[]
+  deleteComplete: (id: number) => void
 }
 
 interface Window {
@@ -28,4 +32,10 @@ interface Todo {
 
 interface MyNotification {
   interval: number
+}
+
+interface Complete {
+  id: number
+  content: string
+  date: string
 }

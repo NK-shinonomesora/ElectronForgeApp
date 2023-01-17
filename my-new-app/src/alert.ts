@@ -3,10 +3,14 @@ import { SelectInterval, SelectTodos, IsFileSizeGreaterThanZero, TableCreate  } 
 import { formatToTimeZone } from 'date-fns-timezone';
 import { spawn } from 'node:child_process';
 
-const GetCurrentDateNum = (): number => {
+export const GetCurrentDateString = (): string => {
   const FORMAT = 'YYYY-MM-DD HH:mm:ss';
   const TIME_ZONE_TOKYO = 'Asia/Tokyo';
-  const dateString = formatToTimeZone(new Date(), FORMAT, { timeZone: TIME_ZONE_TOKYO });
+  return formatToTimeZone(new Date(), FORMAT, { timeZone: TIME_ZONE_TOKYO });
+}
+
+const GetCurrentDateNum = (): number => {
+  const dateString = GetCurrentDateString();
   const [a, b] = dateString.split(" ");
   return new Date(`${a}T${b}.125Z`).getTime();
 }
