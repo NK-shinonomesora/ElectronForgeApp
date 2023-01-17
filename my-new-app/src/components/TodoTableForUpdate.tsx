@@ -34,6 +34,7 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
           <tr key={i}>
             <td>
               <input
+                key={todo.content}
                 data-testid="UpdateContent"
                 type="text" 
                 defaultValue={todo.content}
@@ -44,6 +45,7 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
             </td>
             <td>
               <input
+                key={todo.due_date}
                 data-testid="UpdateDueDate"
                 type="text" 
                 defaultValue={todo.due_date}

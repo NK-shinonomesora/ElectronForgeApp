@@ -99,12 +99,18 @@ export const TodoHook = (): TodoHook => {
 
   const UpdateDoNoticeInTodo = async (id: number) => {
     await window.sql.updateDoNoticeInTodo(id);
+    const res = await window.sql.selectTodos();
+    SortTodosByDueDate(res);
+    setTodos(res);
   }
 
   const CompleteTodo = async (id: number) => {
     const todo = await window.sql.selectTodo(id);
     await window.sql.insertComplete(todo.content);
     await window.sql.deleteTodo(id);
+    const res = await window.sql.selectTodos();
+    SortTodosByDueDate(res);
+    setTodos(res);
   }
 
   const DeleteTodo = async (id: number) => {
@@ -155,6 +161,8 @@ export const CompleteHook = (): CompleteHook => {
 
   const DeleteComplete = async (id: number) => {
     await window.sql.deleteComplete(id);
+    const res = await window.sql.selectCompletes();
+    setCompletes(res);
   }
 
   return { completes, setCompletes, DeleteComplete }

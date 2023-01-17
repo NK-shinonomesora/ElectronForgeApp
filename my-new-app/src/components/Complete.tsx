@@ -11,7 +11,7 @@ const Complete: React.FC = () => {
       const res = await window.sql.selectCompletes();
       setCompletes(res);
     })();
-  }, [completes]);
+  }, []);
 
   return (
     <>
