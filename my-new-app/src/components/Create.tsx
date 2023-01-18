@@ -20,7 +20,10 @@ const Create: React.FC = () => {
 
   const CreateTodo = async () => {
     try {
-      if(!FormatCheck(dueDate)) return;
+      if(!FormatCheck(dueDate)) {
+        alert("日付のフォーマットが無効です");
+        return;
+      };
       await window.sql.insertTodo(content, dueDate);
       openModal();
     } catch(err) {
