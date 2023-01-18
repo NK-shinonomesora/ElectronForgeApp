@@ -105,6 +105,7 @@ export const TodoHook = (): TodoHook => {
   }
 
   const CompleteTodo = async (id: number) => {
+    if(!confirm("完了済みにしますか?")) return;
     const todo = await window.sql.selectTodo(id);
     await window.sql.insertComplete(todo.content);
     await window.sql.deleteTodo(id);
@@ -114,7 +115,7 @@ export const TodoHook = (): TodoHook => {
   }
 
   const DeleteTodo = async (id: number) => {
-    if(!confirm("Do you wish to delete it?")) return;
+    if(!confirm("本当に削除しますか?")) return;
     await window.sql.deleteTodo(id);
     const res = await window.sql.selectTodos();
     SortTodosByDueDate(res);
@@ -143,6 +144,7 @@ export const TodoHook = (): TodoHook => {
 
 export const NotificationIntervalHook = (): NotificationIntervalHook => {
   const [interval, setInterval] = useState<number>(1);
+  const [viewInterval, setViewInterval] = useState<number>();
 
   const SetInterval = (newInterval: string) => {
     const castedNumber = Number(newInterval);
@@ -151,9 +153,11 @@ export const NotificationIntervalHook = (): NotificationIntervalHook => {
 
   const UpdateNotification = async () => {
     await window.sql.updateNotification(interval);
+    const res = await window.sql.selectNotification();
+    setViewInterval(res.interval);
   }
 
-  return { interval, SetInterval, UpdateNotification }
+  return { viewInterval, SetInterval, UpdateNotification, setInterval, setViewInterval }
 }
 
 export const CompleteHook = (): CompleteHook => {

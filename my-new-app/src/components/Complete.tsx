@@ -16,6 +16,7 @@ const Complete: React.FC = () => {
   return (
     <>
     <Header />
+    <h2>完了済みタスク一覧</h2>
     <CompleteTable 
       completes={ completes }
       DeleteComplete={ DeleteComplete }

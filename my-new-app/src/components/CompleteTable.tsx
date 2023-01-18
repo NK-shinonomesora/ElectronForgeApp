@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Todo.css"
 
 interface CompleteTableProp {
   completes: Complete[]
@@ -23,7 +24,7 @@ const CompleteTable: React.FC<CompleteTableProp> = ({ completes, DeleteComplete 
       {
         completes.map((complete, i) => (
           <tr key={i}>
-            <td>{complete.content}</td>
+            <td className={"todoTable"}>{complete.content}</td>
             <td>{complete.date}</td>
             <td>
               <button onClick={() => DeleteComplete(complete.id)}>

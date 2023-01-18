@@ -44,9 +44,11 @@ interface TodoHook {
 }
 
 interface NotificationIntervalHook {
-  interval: number
+  viewInterval: number
   SetInterval: (newInterval: string) => void
   UpdateNotification: () => void
+  setInterval: (interval: number) => void
+  setViewInterval: (interval: number) => void
 }
 
 interface CompleteHook {

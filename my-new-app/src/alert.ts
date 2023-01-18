@@ -26,7 +26,7 @@ const FilterExpiredTodos = (todos: Todo[], interval: number): Todo[] => {
 
 const Notice = async (todos: Todo[]) => {
   for(let i = 0; i < todos.length; i++) {
-    const display = spawn('osascript', ['-e', `display notification "${todos[i].content}" with title "Expired!!!"`]);
+    const display = spawn('osascript', ['-e', `display notification "${todos[i].content}" with title "期限切れか期限が迫っています!"`]);
     // ls.stdout.on('data', (data) => {
     //   console.log(`stdout: ${todos}`);
     // });

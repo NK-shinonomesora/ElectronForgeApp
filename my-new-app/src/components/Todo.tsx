@@ -18,6 +18,10 @@ const Todo: React.FC = () => {
     <>
     <Header />
     <h2>All Todos</h2>
+    <ul>
+      <li>"Notification"で通知のON/OFFを切り替え可能。</li>
+      <li>"Complete"で完了済みに、"Delete"を押すと完全に削除されます。</li>
+    </ul>
     <TodoTableForUpdate
       todos={ todos }
       SetContent={ SetContent }

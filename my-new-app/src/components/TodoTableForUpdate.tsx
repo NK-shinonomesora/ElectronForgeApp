@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Delete.css"
+import "../styles/Todo.css"
 
 interface TodoTableForUpdateProp {
   todos: Todo[]
@@ -33,15 +33,15 @@ const TodoTableForUpdate: React.FC<TodoTableForUpdateProp> = ({ todos, SetConten
         todos.map((todo, i) => (
           <tr key={i}>
             <td>
-              <input
+              <textarea
+                className={"todoTable"}
                 key={todo.content}
                 data-testid="UpdateContent"
-                type="text" 
                 defaultValue={todo.content}
                 onChange={(e) => SetContent(e.target.value)}
                 onBlur={() => UpdateContent(todo.id)}
               >
-              </input>
+              </textarea>
             </td>
             <td>
               <input
